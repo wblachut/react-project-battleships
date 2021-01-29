@@ -1,0 +1,121 @@
+.game {
+  position: absolute;
+  width: 98vw;
+  height: 90vh;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: space-evenly;
+  /* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+.side-title {
+  padding:  20px;
+  text-align: center;
+  font-family: 'Star Jedi';
+  font-size: 2rem;
+}
+
+.grid-wrapper {
+  margin: 0px;
+  padding: 0px;
+  border: 2px white;
+  height: 25rem;
+  width: 25rem;
+  position: relative;
+  display: grid;
+  /* background-color: rgba(255, 255, 255, 0.07); */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  /* overflow: hidden; */
+  flex-wrap: wrap;
+  float: left;
+}
+
+.dark.grid-wrapper {
+  cursor: crosshair; 
+}
+
+.column-description {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: repeat(10, 1fr);
+  margin: 0px 5%;
+  transform: scaleX(0.9);
+}
+
+.inner-wrapper {
+  display: flex;
+}
+
+.inner-wrapper .row-description {
+  /* position: ; */
+  float: left;
+  display: inline-grid;
+  margin-right: 5%;
+}
+
+.numbers, .letters {
+  text-align: center;
+  font-family: 'Star Jedi';
+  padding: 5px;
+}
+
+.dark.row-description {
+  /* position: absolute; */
+  float: right;
+}
+
+.cell {
+  background-color: rgba(255, 255, 255, 0.07);
+  border: .1rem solid rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+.dark.grid-wrapper .cell:hover {
+  transform: scale(1.1);
+  box-shadow: inset 0px 0px 5px rgb(255, 255, 255) ;
+}
+
+.cell.empty {
+  background: none;
+  /* border: 1px solid rgb(128, 128, 128) !important; */
+}
+
+.cell.hit {
+  background: rgba(221, 66, 66, 0.2);
+  /* background-image: url('public/images/flame.gif'); */
+}
+
+.cell.ship {
+  background: rgba(123, 221, 66, 0.2);
+}
+
+
+.cell.hit img {
+  height: 30px;
+}
+
+.light.side-title {
+  text-shadow: 0px 0px 15px lime;
+}
+
+.dark.side-title {
+  text-shadow: 0px 0px 15px red ;
+}
+
+.light.grid-wrapper {
+  box-shadow: 0px 0px 15px lime ;
+}
+
+.dark.grid-wrapper {
+  box-shadow: 0px 0px 15px red;
+}
+
+.dark .board-wrapper {
+  transform: scale(1.05);
+}
