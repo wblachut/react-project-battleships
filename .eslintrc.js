@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // eslint-disable-next-line no-undef
 module.exports = {
 	env: {
@@ -5,29 +6,29 @@ module.exports = {
 		es2021: true,
 	},
 	extends: [
-		'eslint:recommended',
-		'plugin:react/recommended',
-		'plugin:prettier/recommended',
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended",
 	],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,
 		},
 		ecmaVersion: 12,
-		sourceType: 'module',
+		sourceType: "module",
 	},
-	plugins: ['react'],
+	plugins: ["react"],
 	rules: {
-		'prettier/prettier': [
-			'error',
+		"prettier/prettier": [
+			"error",
 			{
 				printWidth: 80,
-				trailingComma: 'es5',
+				trailingComma: "es5",
 				semi: false,
-				jsxSingleQuote: true,
 				singleQuote: true,
+				jsxSingleQuote: false,
 				useTabs: true,
-				endOfLine: 'auto',
+				endOfLine: "auto",
 			},
 		],
 	},

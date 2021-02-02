@@ -14,16 +14,19 @@ export const Player = (name, side, type = 'human', gameBoard) => {
 				opponent.gameBoard.receiveAttack(xCord, yCord)
 				// player.passMove(opponent)
 				return true
-			} else return false
+			} else {
+				console.log('NOT A LEGAL MOVE')
+				return false
+			}
 		},
 		makeAIMove: (opponent) => {
 			let randX = Math.ceil(Math.random() * 10)
 			let randY = Math.ceil(Math.random() * 10)
 			let legal = opponent.gameBoard.receiveAttack(randX, randY)
-			console.log(randX, randY, legal)
+			console.log('AI Move:', randX, randY, 'was legal?', legal)
 			if (legal) {
 				opponent.gameBoard.receiveAttack(randX, randY)
-				console.log(opponent.gameBoard)
+				// console.log(opponent.gameBoard)
 				// player.passMove(opponent)
 				return true
 			} else {

@@ -92,27 +92,25 @@ export const GameBoard = (playerSide) => {
 			return shipArray
 		},
 		changeShipDirection: (ship) => {
-			ship.direction === 'horizontal'
+			ship.direction === 'horizontal' && ship.size > 1
 				? (ship.direction = 'vertical')
 				: (ship.direction = 'horizontal')
 		},
 		receiveAttack: (xCord, yCord) => {
 			let isLegalMove = true
-			if (
-				gameBoard.board[yCord - 1][xCord - 1] === '_' ||
-				gameBoard.board[yCord - 1][xCord - 1] === '*'
-			) {
+			const val = gameBoard.board[yCord - 1][xCord - 1]
+			if (val === '_' || val === '*') {
 				gameBoard.board[yCord - 1][xCord - 1] = '•'
+				console.log('miss !!')
 				// if is a ship
-			} else if (
-				Number.isInteger(parseInt(gameBoard.board[yCord - 1][xCord - 1]))
-			) {
-				// pass a hit to ship
-				let shipId = parseInt(gameBoard.board[yCord - 1][xCord - 1])
-				let attackedShip = gameBoard.ships[shipId - 1]
+			} else if (Number.isInteger(parseInt(val))) {
+				// pass a hit to a ship
+				let attackedShip = gameBoard.ships[parseInt(val) - 1]
 				attackedShip.hit()
 				console.log(
-					`hit a ship, field number: ${shipId}, attacked id: ${attackedShip.id}`
+					`hit a ship! field number: ${parseInt(val)}, attacked id: ${
+						attackedShip.id
+					}`
 				)
 				gameBoard.board[yCord - 1][xCord - 1] = '※'
 
@@ -121,19 +119,14 @@ export const GameBoard = (playerSide) => {
 					gameBoard.markShipArea('•', attackedShip)
 					gameBoard.shipCount--
 					gameBoard.checkGameOver()
-					if (gameBoard.isGameOver === true) {
-						console.log('Game Over')
-					}
+					if (gameBoard.isGameOver === true) console.info('Game Over')
 				}
 			} else {
-				console.log('NOT A LEGAL MOVE')
 				isLegalMove = false
 			}
-			if (isLegalMove) {
-				// && !isGameOver
-				console.log('move was legal...')
-				// pass a turn
-			}
+			// if (isLegalMove) {
+			// 	console.log('move was legal...')
+			// }
 			return isLegalMove
 		},
 
@@ -285,7 +278,7 @@ export const GameBoard = (playerSide) => {
 			}
 		},
 		checkGameOver: () => {
-			console.log('Game over? ', gameBoard.shipCount === 0)
+			// console.log('Game over? ', gameBoard.shipCount === 0)
 			if (gameBoard.shipCount === 0) {
 				gameBoard.isGameOver = true
 				return true

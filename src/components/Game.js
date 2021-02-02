@@ -5,23 +5,9 @@ import GameBoard from './GameBoard'
 
 const Game = (props) => {
 	return (
-		<div className='game'>
-			<GameBoard
-				player={props.PlayerOne}
-				PlayerBoard={props.PlayerOneBoard}
-				setPlayerBoard={props.setP1Board}
-				opponent={props.PlayerTwo}
-				OpponentBoard={props.PlayerTwoBoard}
-				setOpponentBoard={props.setP2Board}
-			/>
-			<GameBoard
-				player={props.PlayerTwo}
-				opponent={props.PlayerOne}
-				OpponentBoard={props.PlayerOneBoard}
-				setOpponentBoard={props.setP1Board}
-				PlayerBoard={props.PlayerTwoBoard}
-				setPlayerBoard={props.setP2Board}
-			/>
+		<div className="game">
+			<GameBoard player={props.PlayerOne} opponent={props.PlayerTwo} />
+			<GameBoard player={props.PlayerTwo} opponent={props.PlayerOne} />
 		</div>
 	)
 }
