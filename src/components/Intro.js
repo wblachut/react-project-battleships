@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+
 import '../style/Intro.css'
 
-const Intro = () => {
+const Intro = ({ setAppStatus }) => {
+	useEffect(() => {
+		setTimeout(() => {
+			setAppStatus('newGame')
+		}, 20000)
+	}, [])
+
+	const onSkipIntro = () => {
+		setAppStatus('newGame')
+	}
+
 	return (
 		<div className="fade">
-			<section className="star-wars-intro">
+			<section className="star-wars-intro" onClick={onSkipIntro}>
 				<div className="crawl">
 					<div className="title">
 						<p>Episode XII</p>
@@ -14,7 +26,7 @@ const Intro = () => {
 						It is a browser battleships game styled on the Star Wars movie by
 						George Lucas. This project was realized on learning purpose for The
 						Odin Project curriculum. Main aim of the project is to build game
-						logic using TDD. I hope you enjoy it
+						logic using Test Driven Development. I hope you enjoy it
 					</p>
 					<br></br>
 					<p className="p-center">Confront the sith lord...</p>
@@ -27,3 +39,7 @@ const Intro = () => {
 }
 
 export default Intro
+
+Intro.propTypes = {
+	setAppStatus: PropTypes.func,
+}

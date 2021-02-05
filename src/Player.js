@@ -11,8 +11,6 @@ export const Player = (name, side, type = 'human', gameBoard) => {
 		makeMove: (opponent, xCord, yCord) => {
 			let legal = opponent.gameBoard.receiveAttack(xCord, yCord)
 			if (legal) {
-				opponent.gameBoard.receiveAttack(xCord, yCord)
-				// player.passMove(opponent)
 				return true
 			} else {
 				console.log('NOT A LEGAL MOVE')
@@ -26,41 +24,32 @@ export const Player = (name, side, type = 'human', gameBoard) => {
 			console.log('AI Move:', randX, randY, 'was legal?', legal)
 			if (legal) {
 				opponent.gameBoard.receiveAttack(randX, randY)
-				// console.log(opponent.gameBoard)
-				// player.passMove(opponent)
 				return true
 			} else {
 				player.makeAIMove(opponent)
 			}
 		},
+		// not used so far
 		passMove: (opponent) => {
 			player.isMakingMove = false
 			opponent.isMakingMove = true
-		},
-
-		hasWon: (board) => {
-			// opposite board
-			board.isGameOver === true
-				? (player.isWinner = true)
-				: (player.isWinner = false)
 		},
 	}
 	return player
 }
 
 export const CreatePlayer = (side, type) => {
-	if (side === 'light') {
-		let boardLightSide = Board('light side')
-		boardLightSide.makeBoard()
-		boardLightSide.getShips()
-		boardLightSide.placeShipsAtRandom()
-		return Player('Jedi Master', side, type, boardLightSide)
+	let gameBoard = Board(`${side}`)
+	gameBoard.makeBoard()
+	gameBoard.getShips(`${side}`)
+	if (type === 'computer') {
+		gameBoard.placeShipsAtRandom()
 	}
+	let name
 	if (side === 'dark') {
-		let boardDarkSide = Board('dark side')
-		boardDarkSide.makeBoard()
-		boardDarkSide.getShips('dark')
-		boardDarkSide.placeShipsAtRandom()
-		return Player('Lord Sith', side, type, boardDarkSide)
+		name = 'Lord Sith'
+	} else {
+		name = 'Jedi Master'
 	}
+	return Player(name, side, type, gameBoard)
 }

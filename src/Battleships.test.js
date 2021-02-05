@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Ship, GameBoard } from './Battleships'
 import { Player } from './Player'
 
@@ -66,7 +67,7 @@ describe('GameBoard', () => {
 
 	it('has ship array', () => {
 		expect(testBoard.ships.length).toBe(6)
-		expect(testBoard.ships[5].name).toBe('Rebel Super Ship')
+		expect(testBoard.ships[5].name).toBe('MC80 Star Cruiser')
 	})
 
 	it('allows change direction of ship', () => {
@@ -81,7 +82,6 @@ describe('GameBoard', () => {
 	})
 
 	//check for illegal move
-
 	it('allows a ship to be placed', () => {
 		testBoard.placeShip(testBoard.ships[5], 3, 3)
 		expect(testBoard.board[0]).toEqual([
@@ -357,26 +357,15 @@ describe('Player', () => {
 		expect(PlayerTwo.isWinner).toBeFalsy()
 		PlayerOne.gameBoard.placeShipsAtRandom()
 		PlayerTwo.gameBoard.placeShipsAtRandom()
-		// console.log(PlayerOne.gameBoard.board);
 	})
 
-	test.only('Players making moves properly', () => {
-		PlayerOne.gameBoard.placeShip(PlayerOne.gameBoard.ships[5], 1, 1)
-		PlayerTwo.gameBoard.placeShip(PlayerTwo.gameBoard.ships[5], 1, 1)
-		PlayerOne.makeMove(PlayerTwo, 1, 1)
-		console.log(PlayerOne.gameBoard.board)
-
-		// expect(PlayerOne.isWinner).toBeFalsy();
-		// expect(PlayerTwo.isWinner).toBeFalsy();
+	test('Checks if Players win properly', () => {
+		expect(PlayerOne.isWinner).toBeFalsy()
+		PlayerOne.gameBoard.placeShipsAtRandom()
+		PlayerTwo.gameBoard.placeShipsAtRandom()
+		PlayerTwo.gameBoard.ships.map((ship) => (ship.isSunk = true))
+		PlayerTwo.gameBoard.checkGameOver()
+		PlayerOne.hasWon(PlayerTwo.gameBoard)
+		expect(PlayerOne.isWinner).toBeTruthy()
 	})
-
-	// test('Checks if Players win properly', () => {
-	//   expect(PlayerOne.isWinner).toBeFalsy()
-	//   PlayerOne.gameBoard.placeShipsAtRandom();
-	//   PlayerTwo.gameBoard.placeShipsAtRandom();
-	//   PlayerTwo.gameBoard.ships.map(ship => ship.isSunk = true);
-	//   PlayerTwo.gameBoard.checkGameOver()
-	//   PlayerOne.hasWon(PlayerTwo.gameBoard)
-	//   expect(PlayerOne.isWinner).toBeTruthy()
-	// })
 })

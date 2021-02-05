@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Announcer = ({ winner }) => {
+const Announcer = ({ winner, setWinner, setAppStatus }) => {
+	const onPlayAgain = () => {
+		setWinner(null)
+		setAppStatus('newGame')
+	}
+
 	return (
 		<div className="announcer-container">
 			<div className={`announcer ${winner.side}`}>
@@ -19,8 +24,10 @@ const Announcer = ({ winner }) => {
 						<div className={`img-wrapper ${winner.side}`}></div>
 					</h2>
 				)}
-				<button className="new-game-btn">Play again!</button>
 			</div>
+			<button className="new-game-btn star-btn" onClick={onPlayAgain}>
+				Play again!
+			</button>
 		</div>
 	)
 }
@@ -29,4 +36,6 @@ export default Announcer
 
 Announcer.propTypes = {
 	winner: PropTypes.object,
+	setWinner: PropTypes.func,
+	setAppStatus: PropTypes.func,
 }

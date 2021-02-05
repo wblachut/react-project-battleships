@@ -1,13 +1,4 @@
-// Spaceships:
-// star fighters: (TIE-fighter, x-wing, y-wing)
-// (shuttle, star-fighter, bomber, destroyer, magister-destroyer)
 // https://starwars.fandom.com/wiki/Starfighter/Legends
-//
-// ships images visible on sides of boardgames
-// ship damaged => ember gif on the ship image
-// ship destroyed => red opacity
-// lose/win => different icon appearing
-// Battleship.Proto
 
 export const Ship = (name, size, direction = 'horizontal') => {
 	const ship = {
@@ -49,6 +40,9 @@ export const GameBoard = (playerSide) => {
 		},
 		makeBoard: () => {
 			gameBoard.board = gameBoard.emptyBoard()
+			gameBoard.shipCount = 0
+			gameBoard.isReady = false
+			gameBoard.isGameOver = false
 		},
 		getShips: (playerSide) => {
 			let shipArray = []
@@ -74,10 +68,10 @@ export const GameBoard = (playerSide) => {
 			} else {
 				starFighter = Ship('Shuttle', 1)
 				starFighter2 = Ship('Shuttle', 1)
-				superStarFighter = Ship('X-wing', 2)
-				superStarFighter2 = Ship('X-wing', 2)
-				starDestroyer = Ship('Rebel heavy ship', 3)
-				superStarDestroyer = Ship('Rebel Super Ship', 4)
+				superStarFighter = Ship('X-wing starfighter', 2)
+				superStarFighter2 = Ship('X-wing starfighter', 2)
+				starDestroyer = Ship('CR90 corvette', 3)
+				superStarDestroyer = Ship('MC80 Star Cruiser', 4)
 				shipArray.push(
 					starFighter,
 					starFighter2,
@@ -102,9 +96,7 @@ export const GameBoard = (playerSide) => {
 			if (val === '_' || val === '*') {
 				gameBoard.board[yCord - 1][xCord - 1] = '•'
 				console.log('miss !!')
-				// if is a ship
 			} else if (Number.isInteger(parseInt(val))) {
-				// pass a hit to a ship
 				let attackedShip = gameBoard.ships[parseInt(val) - 1]
 				attackedShip.hit()
 				console.log(
@@ -124,43 +116,32 @@ export const GameBoard = (playerSide) => {
 			} else {
 				isLegalMove = false
 			}
-			// if (isLegalMove) {
-			// 	console.log('move was legal...')
-			// }
 			return isLegalMove
 		},
 
 		checkPlacement: (ship, xCord, yCord) => {
-			// X, Y - coords to be checked
+			xCord = parseFloat(xCord)
+			yCord = parseFloat(yCord)
 			let isLegalPlace = true
 			if (ship.direction === 'horizontal') {
-				if (ship.size + xCord - 1 > 10) isLegalPlace = false
-				for (let j = 0; j < 3; j++) {
-					let Y = yCord - 2 + j
-					if (0 <= Y && Y <= 9) {
-						for (let i = 0; i < ship.size + 2; i++) {
-							let X = xCord - 2 + i
-							if (0 <= X && X <= 9) {
-								if (gameBoard.board[Y][X] !== '_') {
-									isLegalPlace = false
-								}
-							}
-						}
+				if (ship.size + xCord - 1 > 10) {
+					isLegalPlace = false
+					return
+				}
+				for (let i = 0; i < ship.size; i++) {
+					if (gameBoard.board[yCord - 1][xCord - 1 + i] !== '_') {
+						isLegalPlace = false
+						return
 					}
 				}
 			} else if (ship.direction === 'vertical') {
-				if (ship.size + yCord - 1 > 10) isLegalPlace = false
-				for (let j = 0; j < 3; j++) {
-					let X = xCord - 2 + j
-					if (0 <= X && X <= 9) {
-						for (let i = 0; i < ship.size + 2; i++) {
-							let Y = yCord - 2 + i
-							if (0 <= Y && Y <= 9) {
-								if (gameBoard.board[Y][X] !== '_') {
-									isLegalPlace = false
-								}
-							}
-						}
+				if (ship.size + yCord - 1 > 10) {
+					isLegalPlace = false
+					return
+				}
+				for (let i = 0; i < ship.size; i++) {
+					if (gameBoard.board[yCord - 1 + i][xCord - 1] !== '_') {
+						isLegalPlace = false
 					}
 				}
 			}
@@ -169,9 +150,10 @@ export const GameBoard = (playerSide) => {
 		},
 
 		placeShip: (ship, xCord, yCord) => {
-			// yCord - row cord (array)
-			// xCord - column cord (array element)
-			if (gameBoard.checkPlacement(ship, xCord, yCord)) {
+			if (
+				gameBoard.shipCount < 6 &&
+				gameBoard.checkPlacement(ship, xCord, yCord)
+			) {
 				if (ship.direction === 'horizontal') {
 					ship.hitState.forEach((cell, i) => {
 						gameBoard.board[yCord - 1][xCord - 1 + i] = `${ship.id}`
@@ -183,14 +165,18 @@ export const GameBoard = (playerSide) => {
 				}
 				gameBoard.markShipArea('*', ship, xCord, yCord)
 				ship.onBoard = true
-				ship.coordinates = [xCord, yCord]
+				ship.coordinates = [parseFloat(xCord), parseFloat(yCord)]
 				console.log(
 					`${ship.name} was placed ${ship.direction} on ${ship.coordinates}`
 				)
+				console.log(ship.coordinates)
 				gameBoard.shipCount++
 				if (gameBoard.shipCount === 6) {
 					gameBoard.isReady = true
 				}
+				return true
+			} else {
+				return false
 			}
 		},
 
@@ -220,7 +206,7 @@ export const GameBoard = (playerSide) => {
 						}
 					}
 
-					if (xCord + ship.size < 10) {
+					if (xCord - 1 + ship.size < 10) {
 						if (yCord > 1) {
 							gameBoard.board[yCord - 2][xCord - 1 + ship.size] = `${mark}`
 						}
@@ -246,7 +232,7 @@ export const GameBoard = (playerSide) => {
 							gameBoard.board[yCord - 2][xCord] = `${mark}`
 						}
 					}
-					if (yCord + ship.size < 10) {
+					if (yCord - 1 + ship.size < 10) {
 						if (xCord > 1) {
 							gameBoard.board[yCord - 1 + ship.size][xCord - 2] = `${mark}`
 						}
