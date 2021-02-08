@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const GameBoard = (props) => {
-	const { player, board, isGameReady } = props
+	const { player, board, isGameReady } = props;
 	// add outer side column with ships - on destroy add fire gif
 	// make ships render only in React, without vanilla JS
 	return (
@@ -20,7 +20,7 @@ const GameBoard = (props) => {
 									{' '}
 									{[i + 1]}{' '}
 								</div>
-							)
+							);
 						})}
 					</div>
 					<div className="inner-wrapper">
@@ -32,7 +32,7 @@ const GameBoard = (props) => {
 										{' '}
 										{(i + 10).toString(36)}{' '}
 									</div>
-								)
+								);
 							})}
 						</div>
 
@@ -49,19 +49,19 @@ const GameBoard = (props) => {
 														data-cord={[j + 1, i + 1]}
 														key={[j + 1, i + 1]}
 														onDragOver={(e) => {
-															e.preventDefault()
+															e.preventDefault();
 														}}
 														onDragEnter={(e) => {
-															e.preventDefault()
-															e.target.classList.add('hover')
+															e.preventDefault();
+															e.target.classList.add('hover');
 														}}
 														onDragLeave={(e) => {
-															e.preventDefault()
-															e.target.classList.remove('hover')
+															e.preventDefault();
+															e.target.classList.remove('hover');
 														}}
 														onDrop={(e) => props.onPlaceShip(e)}
 													></div>
-												)
+												);
 											} else {
 												return (
 													<div
@@ -69,10 +69,10 @@ const GameBoard = (props) => {
 														data-cord={[j + 1, i + 1]}
 														key={[j + 1, i + 1]}
 													></div>
-												)
+												);
 											}
 										} else if (Number.isInteger(parseInt(element))) {
-											let ship = player.gameBoard.ships[element - 1]
+											let ship = player.gameBoard.ships[element - 1];
 											return (
 												<div
 													className={`cell ship ship${ship.id}`}
@@ -91,7 +91,7 @@ const GameBoard = (props) => {
 															/>
 														)}
 												</div>
-											)
+											);
 										} else if (element === '※') {
 											return (
 												<div
@@ -105,7 +105,7 @@ const GameBoard = (props) => {
 														alt="flames"
 													/>
 												</div>
-											)
+											);
 										} else {
 											return (
 												<div
@@ -115,7 +115,7 @@ const GameBoard = (props) => {
 												>
 													•
 												</div>
-											)
+											);
 										}
 									}
 									// AI board
@@ -129,7 +129,7 @@ const GameBoard = (props) => {
 												>
 													•
 												</div>
-											)
+											);
 										} else if (element === '※') {
 											return (
 												<div
@@ -143,7 +143,7 @@ const GameBoard = (props) => {
 														alt="as"
 													/>
 												</div>
-											)
+											);
 										} else {
 											return (
 												<div
@@ -152,7 +152,7 @@ const GameBoard = (props) => {
 													key={[j + 1, i + 1]}
 													onClick={(e) => props.onMakeMove(e)}
 												></div>
-											)
+											);
 										}
 									}
 								})
@@ -189,12 +189,12 @@ const GameBoard = (props) => {
 											data-ship={ship.id}
 											draggable
 											onDragStart={(e) => {
-												e.dataTransfer.setData('ship', e.target.dataset.ship)
+												e.dataTransfer.setData('ship', e.target.dataset.ship);
 											}}
 										/>
 									</div>
 								)
-							)
+							);
 						})}
 					</div>
 				)}
@@ -210,10 +210,10 @@ const GameBoard = (props) => {
 				</div>
 			)}
 		</div>
-	)
-}
+	);
+};
 
-export default React.memo(GameBoard)
+export default GameBoard;
 
 GameBoard.propTypes = {
 	isGameReady: PropTypes.bool,
@@ -225,4 +225,4 @@ GameBoard.propTypes = {
 	onPlaceRandomly: PropTypes.func,
 	onResetBoard: PropTypes.func,
 	onStartGame: PropTypes.func,
-}
+};

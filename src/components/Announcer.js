@@ -1,14 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Announcer = ({ winner, setWinner, setAppStatus }) => {
+const Announcer = ({ winner, setAppStatus }) => {
 	const onPlayAgain = () => {
-		setWinner(null)
-		setAppStatus('newGame')
-	}
+		setAppStatus('newGame');
+	};
 
 	return (
-		<div className="announcer-container">
+		<div>
 			<div className={`announcer ${winner.side}`}>
 				<h1>{winner.name} has won!</h1>
 				{winner.side === 'light' && (
@@ -29,13 +28,12 @@ const Announcer = ({ winner, setWinner, setAppStatus }) => {
 				Play again!
 			</button>
 		</div>
-	)
-}
+	);
+};
 
-export default Announcer
+export default Announcer;
 
 Announcer.propTypes = {
 	winner: PropTypes.object,
-	setWinner: PropTypes.func,
 	setAppStatus: PropTypes.func,
-}
+};

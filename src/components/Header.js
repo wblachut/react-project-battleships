@@ -1,5 +1,5 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Header = () => {
 	return (
@@ -18,7 +18,7 @@ const Header = () => {
 			</div>
 			<nav></nav>
 		</header>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;

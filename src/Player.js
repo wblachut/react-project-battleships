@@ -1,4 +1,4 @@
-import { GameBoard as Board } from './Battleships'
+import { GameBoard as Board } from './Battleships';
 
 export const Player = (name, side, type = 'human', gameBoard) => {
 	const player = {
@@ -9,47 +9,47 @@ export const Player = (name, side, type = 'human', gameBoard) => {
 		isWinner: false,
 		isMakingMove: false,
 		makeMove: (opponent, xCord, yCord) => {
-			let legal = opponent.gameBoard.receiveAttack(xCord, yCord)
+			let legal = opponent.gameBoard.receiveAttack(xCord, yCord);
 			if (legal) {
-				return true
+				return true;
 			} else {
-				console.log('NOT A LEGAL MOVE')
-				return false
+				console.log('NOT A LEGAL MOVE');
+				return false;
 			}
 		},
 		makeAIMove: (opponent) => {
-			let randX = Math.ceil(Math.random() * 10)
-			let randY = Math.ceil(Math.random() * 10)
-			let legal = opponent.gameBoard.receiveAttack(randX, randY)
-			console.log('AI Move:', randX, randY, 'was legal?', legal)
+			let randX = Math.ceil(Math.random() * 10);
+			let randY = Math.ceil(Math.random() * 10);
+			let legal = opponent.gameBoard.receiveAttack(randX, randY);
+			console.log('AI Move:', randX, randY, 'was legal?', legal);
 			if (legal) {
-				opponent.gameBoard.receiveAttack(randX, randY)
-				return true
+				opponent.gameBoard.receiveAttack(randX, randY);
+				return true;
 			} else {
-				player.makeAIMove(opponent)
+				player.makeAIMove(opponent);
 			}
 		},
 		// not used so far
 		passMove: (opponent) => {
-			player.isMakingMove = false
-			opponent.isMakingMove = true
+			player.isMakingMove = false;
+			opponent.isMakingMove = true;
 		},
-	}
-	return player
-}
+	};
+	return player;
+};
 
 export const CreatePlayer = (side, type) => {
-	let gameBoard = Board(`${side}`)
-	gameBoard.makeBoard()
-	gameBoard.getShips(`${side}`)
+	let gameBoard = Board(`${side}`);
+	gameBoard.makeBoard();
+	gameBoard.getShips(`${side}`);
 	if (type === 'computer') {
-		gameBoard.placeShipsAtRandom()
+		gameBoard.placeShipsAtRandom();
 	}
-	let name
+	let name;
 	if (side === 'dark') {
-		name = 'Lord Sith'
+		name = 'Lord Sith';
 	} else {
-		name = 'Jedi Master'
+		name = 'Jedi Master';
 	}
-	return Player(name, side, type, gameBoard)
-}
+	return Player(name, side, type, gameBoard);
+};

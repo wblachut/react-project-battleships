@@ -24,7 +24,7 @@ module.exports = {
 			{
 				printWidth: 80,
 				trailingComma: "es5",
-				semi: false,
+				semi: true,
 				singleQuote: true,
 				jsxSingleQuote: false,
 				useTabs: true,
