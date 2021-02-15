@@ -6,9 +6,7 @@ import App from './App';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, fas, faTrash);
+library.add(fab);
 
 ReactDOM.render(
 	<React.StrictMode>

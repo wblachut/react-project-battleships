@@ -14,7 +14,7 @@ const Intro = ({ setAppStatus }) => {
 				<div className="crawl">
 					<div className="title">
 						<p>Episode XII</p>
-						<h1>The Spaceships</h1>
+						<h1>The Starships</h1>
 					</div>
 					<p>
 						It is a browser battleships game react application styled on the

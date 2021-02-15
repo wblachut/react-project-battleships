@@ -26,7 +26,6 @@ const Game = (props) => {
 
 	useEffect(() => {
 		handleComputerShipDisplay();
-		console.log('use Effect:', EnemyShipCount);
 	}, [EnemyShipCount]);
 
 	const onPlaceRandomly = () => {

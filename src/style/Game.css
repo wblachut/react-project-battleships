@@ -73,16 +73,15 @@
 }
 
 .cell {
-  background-color: rgba(255, 255, 255, 0.07);
+  background-color: rgba(255, 255, 255, 0.1);
   border: 0.1rem solid rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.349) !important;
-  /* ??????? */
-  width: 34px;
+  color: rgba(195, 253, 255, 0.7) !important;
+  width: 34x;
   height: 34px;
   z-index: 9;
 }
@@ -98,7 +97,6 @@
 
 .cell.empty {
   background: none;
-  /* border: 1px solid rgb(128, 128, 128) !important; */
 }
 
 .cell.hit {
@@ -148,6 +146,11 @@
   transform: translate(12%) scale(0.33);
   position: absolute;
   z-index: 8;
+  user-select: none !important;
+  -moz-user-select: none !important;
+  -webkit-user-drag: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
 }
 .ship-img-grid.vertical {
   transform: translate(0%, 52%) scale(0.33) rotate(90deg);

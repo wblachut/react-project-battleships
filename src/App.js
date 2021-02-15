@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { CreatePlayer } from './Player';
 import { CSSTransition } from 'react-transition-group';
-// import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Header from './components/Header';
 import Intro from './components/Intro';
@@ -11,14 +10,11 @@ import Game from './components/Game';
 import Announcer from './components/Announcer';
 import './style/App.css';
 
-// fix ESLint end line to semicolon
-
 const App = () => {
 	const [appStatus, setAppStatus] = useState('intro');
 	const [winner, setWinner] = useState(null);
 	let PlayerOne = CreatePlayer('light', 'human');
 	let PlayerTwo = CreatePlayer('dark', 'computer');
-	// const [winner, setWinner] = useState(null)
 	console.clear();
 
 	let timeout = 2000;

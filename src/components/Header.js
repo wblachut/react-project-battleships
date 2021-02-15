@@ -6,7 +6,7 @@ const Header = () => {
 		<header className="header">
 			<div className="header-row">
 				<h1 className="col-sm-8">
-					<span className="title1">SpaceShips </span>{' '}
+					<span className="title1">StarShips </span>{' '}
 				</h1>
 				<a
 					href="https://github.com/wblachut/react-project-battleships"
