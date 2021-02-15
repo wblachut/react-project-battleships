@@ -1,12 +1,12 @@
 # The Starships - battleships web game
 
-Do you feel like a good strategist? Ever fought in space? May the force be with you! [Fight](https://wblachut.github.io/react-project-battleships/) in foreign galaxy!
+Do you feel like a good strategist? [Fight the Empire in foreign galaxies!](https://wblachut.github.io/react-project-battleships/) 
 
 #
 
 ## PROJECT: BATTLESHIP
 
-Project is a part of The Odin Project [JavaScript learning curriculum](https://www.theodinproject.com/courses/javascript). To learn more open the [assignment](https://www.theodinproject.com/courses/javascript/lessons/battleship).
+Project is a part of The Odin Project [JavaScript learning curriculum](https://www.theodinproject.com/courses/javascript). To learn more open the [TOP assignment](https://www.theodinproject.com/courses/javascript/lessons/battleship).
 
 ## Description
 
@@ -16,11 +16,13 @@ On page load you can observe text flowing similarly to one from George Lukas Sta
 
 ![](/public/gifs/intro.gif)
 
-You can start the game by clicking the button on the bottom of the page. Or you can just enjoy looking on the x-wing!
+You can start the game by clicking the button on the bottom of the page. Or you can just enjoy looking on the x-wing! In the game preparations you can place your fleet however you want, or just randomly...
+
+![](/public/gifs/preps.gif)
+
+You are a good guy, **remember that**! Help the rebeliants to win!
 
 ![](/public/gifs/game.gif)
-
-Furtherly you are taken to the game preparations. Here you can place your fleet however you want, or.. just randomly. You are a good guy, **remember that**! Help the rebeliants to win!
 
 Otherwise...
 
