@@ -17,10 +17,6 @@ const Game = (props) => {
 	);
 
 	useEffect(() => {
-		console.warn('GAME HAS A WINNER');
-	}, [props.winner]);
-
-	useEffect(() => {
 		handlePlayerShipDisplay();
 	}, [board]);
 
@@ -53,7 +49,7 @@ const Game = (props) => {
 		const shipID = e.dataTransfer.getData('ship');
 		const ship = player.gameBoard.ships[shipID - 1];
 		player.gameBoard.placeShip(ship, x, y);
-		console.table(board);
+		// console.table(board);
 		setBoard([...player.gameBoard.board]);
 	};
 
@@ -62,13 +58,12 @@ const Game = (props) => {
 	};
 
 	const onMakeMove = (e) => {
-		console.log('Your move:');
 		const y = e.target.dataset.cord.split(',')[0];
 		const x = e.target.dataset.cord.split(',')[1];
 		if (player.makeMove(opponent, x, y) === true) {
 			setOpponentBoard([...opponent.gameBoard.board]);
 			setEnemyShipCount(opponent.gameBoard.shipCount);
-			console.table(opponentBoard);
+			// console.table(opponentBoard);
 			if (opponent.gameBoard.isGameOver) {
 				onEndGame(player);
 			}
@@ -77,10 +72,9 @@ const Game = (props) => {
 	};
 
 	const onAIMove = () => {
-		console.log('Computer move:');
 		opponent.makeAIMove(player);
 		setBoard([...player.gameBoard.board]);
-		console.table(board);
+		// console.table(board);
 		if (player.gameBoard.isGameOver) {
 			onEndGame(opponent);
 		}

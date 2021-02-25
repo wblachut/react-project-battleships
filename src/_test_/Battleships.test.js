@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { Ship, GameBoard } from './Battleships';
-import { Player } from './Player';
+import { Ship, GameBoard } from '../Battleships';
+import { Player } from '../Player';
 
 describe('Ships', () => {
 	let starFighter;
@@ -148,8 +148,6 @@ describe('GameBoard', () => {
 
 	it('allows a ship to be placed in a bottom corner', () => {
 		testBoard.placeShip(testBoard.ships[5], 1, 1);
-		// console.log(testBoard.board[0])
-		// console.log(testBoard.board[1])
 		expect(testBoard.board[0]).toEqual([
 			'6',
 			'6',
@@ -178,8 +176,6 @@ describe('GameBoard', () => {
 
 	it('allows a ship to be placed in a top corner', () => {
 		testBoard.placeShip(testBoard.ships[5], 7, 10);
-		// console.log(testBoard.board[8])
-		// console.log(testBoard.board[9])
 		expect(testBoard.board[8]).toEqual([
 			'_',
 			'_',
@@ -213,13 +209,11 @@ describe('GameBoard', () => {
 		expect(testBoard.board[2][0]).toEqual('5');
 		expect(testBoard.board[3][0]).toEqual('*');
 		expect(testBoard.board[5][0]).toEqual('_');
-		// console.log(testBoard.board);
 	});
 
 	it('Checks for illegal placement', () => {
 		expect(testBoard.checkPlacement(testBoard.ships[4], 1, 1)).toBe(true);
 		testBoard.placeShip(testBoard.ships[4], 1, 1);
-		// console.log(testBoard.board);
 		expect(testBoard.checkPlacement(testBoard.ships[3], 7, 6)).toBe(true);
 		expect(testBoard.checkPlacement(testBoard.ships[5], 2, 2)).toBe(false);
 		testBoard.changeShipDirection(testBoard.ships[5]);
@@ -262,7 +256,6 @@ describe('GameBoard', () => {
 	it('destroys ship properly', () => {
 		testBoard.placeShip(testBoard.ships[2], 2, 2);
 		expect(testBoard.ships[2].hitState).toEqual(['o', 'o']);
-		// console.log(testBoard.ships);
 		testBoard.receiveAttack(2, 2);
 		expect(testBoard.board[1]).toEqual([
 			'*',
@@ -320,18 +313,14 @@ describe('GameBoard', () => {
 	it('Places all ships at random on a board', () => {
 		expect(testBoard.isReady).toBeFalsy();
 		testBoard.placeShipsAtRandom();
-		console.log(testBoard.board);
 		testBoard.ships.forEach((ship) => expect(ship.onBoard).toBe(true));
 		expect(testBoard.isReady).toBeTruthy();
 	});
 
-	// doesn't end until all ships are drawn
-	//
 	it('does end when all ships are drawn', () => {
 		expect(testBoard.isGameOver).toBeFalsy();
 		testBoard.ships.map((ship) => (ship.isSunk = true));
 		testBoard.checkGameOver();
-		console.log(!testBoard.ships.find((ship) => ship.isSunk === false));
 		expect(testBoard.isGameOver).toBeTruthy();
 	});
 });
@@ -357,6 +346,8 @@ describe('Player', () => {
 		expect(PlayerTwo.isWinner).toBeFalsy();
 		PlayerOne.gameBoard.placeShipsAtRandom();
 		PlayerTwo.gameBoard.placeShipsAtRandom();
+		expect(PlayerTwo.gameBoard.ships.length).toEqual(6);
+		expect(PlayerTwo.gameBoard.ships.length).toEqual(6);
 	});
 
 	test('Checks if Players win properly', () => {
