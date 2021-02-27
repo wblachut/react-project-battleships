@@ -21,7 +21,7 @@ header {
   padding-top: 20px;
 }
 
-.title1 {
+.title-main {
   font-family: "Star Jedi";
   font-family: "Star Jedi Hollow";
   font-size: 3rem;
@@ -60,12 +60,6 @@ html {
 }
 
 .game-board {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 70vh;
-  overflow: hidden;
-  flex-wrap: wrap;
 }
 
 .new-game,
@@ -75,7 +69,7 @@ html {
   position: absolute;
   top: 50vh;
   left: 50vw;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -93,8 +87,7 @@ html {
   -moz-box-shadow: inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow: inset 0 0 80px #000000, inset 0 0 10px 20px #000000;
-  transform: translateX(-25%);
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
 }
 
 .new-game-btn,
@@ -102,14 +95,12 @@ html {
   justify-self: center;
   position: absolute !important;
   bottom: 5vh;
-  left: 34%;
+  /* left: 34%; */
+  left: 50vw;
+  transform: translate(-50%, 0%);
   font-size: 2rem;
   /* padding: 10px; */
   width: 500px;
-}
-
-.new-game-btn {
-  left: 34%;
 }
 
 .star-btn {
@@ -152,7 +143,6 @@ html {
 }
 
 .img-wrapper {
-  /* padding-bottom: 50px; */
   width: 460px;
   height: 250px;
   overflow: hidden;
@@ -219,4 +209,77 @@ html {
 .trans-exit-active {
   opacity: 0;
   transition: opacity 200ms, transform 2000ms;
+}
+
+@media (max-width: 768px) {
+
+  .header-row {
+    padding: 0px;
+  }
+
+  .gh-btn {
+    transform: scale(1.9) !important;
+    top: 3vh;
+    left: 6vw;
+  }
+
+  .crawl {
+    width: 120%;
+  }
+
+  .title-main {
+    font-size: 1.8rem;
+  }
+  
+  .star-wars-intro {
+    font-size: 2.0rem;
+  }
+  
+  .new-game-btn, .start-game-btn {
+    font-size: 1.0rem;
+    width: initial;
+  }
+
+  .game {
+    flex-direction: column;
+    top: 2vh !important;
+    height: auto;
+  }
+
+  .new-game-wrapper {
+    transform: scale(.8);
+  }
+
+  .side-title {
+    display: none;
+  }
+
+  .outer-wrapper {
+    transform: scale(0.6) translate(0, -33%);
+    /* margin-top:  -20vh !important; */
+    flex-direction: column;
+  }
+
+  .dark.game-board {
+    margin-top:  -140px !important;
+  }
+
+  .ship-wrapper {
+    /* width: 30vw; */
+    transform: scale(0.9) translate(-20%, 0);
+
+  }
+
+  .start-game-btn {
+    position: fixed !important;
+    bottom: 2vh
+  }
+
+  .game .star-btn:nth-child(n+2) {
+    display: none;
+  }
+
+  .announcer {
+    transform: scale(.6) translate(-50%, -50%);
+  }
 }

@@ -28,7 +28,9 @@ const Intro = ({ setAppStatus }) => {
 					<br></br>
 					<p className="p-center">May the force be with you jedi master!</p>
 					<br></br>
-					<p className="p-center">Click the mouse to continue to the game!</p>
+					<p className="p-center">
+						Click on the screen to continue to the game!
+					</p>
 				</div>
 			</section>
 		</div>

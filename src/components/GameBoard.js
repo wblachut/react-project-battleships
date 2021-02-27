@@ -7,7 +7,7 @@ const GameBoard = (props) => {
 	// add outer side column with ships - on destroy add fire gif
 	// make ships render only in React, without vanilla JS
 	return (
-		<div className={`${player.side} gameBoard`}>
+		<div className={`${player.side} game-board`}>
 			<div className={`${player.side} side-title`}>The {player.side} side</div>
 
 			<div className="outer-wrapper">

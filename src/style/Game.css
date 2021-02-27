@@ -1,12 +1,10 @@
 .game {
-  position: absolute;
-  width: 98vw;
+  position: relative;
   height: 90vh;
   padding: 0px;
   margin: 0px;
   display: flex;
   justify-content: space-evenly;
-  /* background-color: rgba(255, 255, 255, 0.1); */
 }
 
 .side-title {
@@ -29,10 +27,8 @@
   width: 25rem;
   position: relative;
   display: grid;
-  /* background-color: rgba(255, 255, 255, 0.07); */
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  /* overflow: hidden; */
   flex-wrap: wrap;
   float: left;
 }
