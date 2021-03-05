@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import '../style/Game.css';
 import GameBoard from './GameBoard';
@@ -31,7 +31,7 @@ const Game = (props) => {
 	};
 
 	const onFlipShips = () => {
-		player.gameBoard.ships.map((ship) => {
+		player.gameBoard.ships.forEach((ship) => {
 			if (!ship.onBoard) player.gameBoard.changeShipDirection(ship);
 		});
 		setBoard([...player.gameBoard.board]);
@@ -169,4 +169,20 @@ Game.propTypes = {
 	winner: PropTypes.object,
 	setWinner: PropTypes.func,
 	setAppStatus: PropTypes.func,
+};
+
+Game.defaultProps = {
+	player: {},
+	board: {},
+	setBoard: () => {},
+	opponent: {},
+	opponentBoard: [],
+	setOpponentBoard: () => {},
+	PlayerOne: {},
+	PlayerTwo: {},
+	gameReady: false,
+	setGameReady: () => {},
+	winner: {},
+	setWinner: () => {},
+	setAppStatus: () => {},
 };

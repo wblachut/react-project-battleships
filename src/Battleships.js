@@ -1,13 +1,11 @@
-// https://starwars.fandom.com/wiki/Starfighter/Legends
-
-export const Ship = (name, size, direction = 'horizontal') => {
+export const Ship = (name = 'ship', size = 1, direction = 'horizontal') => {
 	const ship = {
 		name,
 		size,
 		direction,
 		hitState: Array(size).fill('o'),
 		hit: () => {
-			let nextHit = ship.hitState.findIndex((field) => field === 'o');
+			const nextHit = ship.hitState.findIndex((field) => field === 'o');
 			ship.hitState[nextHit] = 'hit';
 		},
 		isSunk: () => !ship.hitState.includes('o'),
@@ -44,47 +42,35 @@ export const GameBoard = (playerSide) => {
 			gameBoard.isReady = false;
 			gameBoard.isGameOver = false;
 		},
-		getShips: (playerSide) => {
-			let shipArray = [];
-			let starFighter, starFighter2;
-			let superStarFighter, superStarFighter2;
-			let starDestroyer;
-			let superStarDestroyer;
+
+		createShips: (playerSide) => {
 			if (playerSide === 'dark') {
-				starFighter = Ship('TIE-fighter', 1);
-				starFighter2 = Ship('TIE-fighter', 1);
-				superStarFighter = Ship('TIE-bomber', 2);
-				superStarFighter2 = Ship('TIE-bomber', 2);
-				starDestroyer = Ship('Star Destroyer', 3);
-				superStarDestroyer = Ship('Super Star Destroyer', 4);
-				shipArray.push(
-					starFighter,
-					starFighter2,
-					superStarFighter,
-					superStarFighter2,
-					starDestroyer,
-					superStarDestroyer
-				);
+				return [
+					Ship('TIE-fighter', 1),
+					Ship('TIE-fighter', 1),
+					Ship('TIE-bomber', 2),
+					Ship('TIE-bomber', 2),
+					Ship('Star Destroyer', 3),
+					Ship('Super Star Destroyer', 4),
+				];
 			} else {
-				starFighter = Ship('Shuttle', 1);
-				starFighter2 = Ship('Shuttle', 1);
-				superStarFighter = Ship('X-wing starfighter', 2);
-				superStarFighter2 = Ship('X-wing starfighter', 2);
-				starDestroyer = Ship('CR90 corvette', 3);
-				superStarDestroyer = Ship('MC80 Star Cruiser', 4);
-				shipArray.push(
-					starFighter,
-					starFighter2,
-					superStarFighter,
-					superStarFighter2,
-					starDestroyer,
-					superStarDestroyer
-				);
+				return [
+					Ship('Shuttle', 1),
+					Ship('Shuttle', 1),
+					Ship('X-wing starfighter', 2),
+					Ship('X-wing starfighter', 2),
+					Ship('CR90 corvette', 3),
+					Ship('MC80 Star Cruiser', 4),
+				];
 			}
+		},
+		getShips: () => {
+			const shipArray = gameBoard.createShips();
 			shipArray.map((ship, id) => (ship.id = id + 1));
 			gameBoard.ships = shipArray;
 			return shipArray;
 		},
+
 		changeShipDirection: (ship) => {
 			ship.direction === 'horizontal' && ship.size > 1
 				? (ship.direction = 'vertical')
@@ -95,23 +81,16 @@ export const GameBoard = (playerSide) => {
 			const val = gameBoard.board[yCord - 1][xCord - 1];
 			if (val === '_' || val === '*') {
 				gameBoard.board[yCord - 1][xCord - 1] = '•';
-				console.log('miss !!');
 			} else if (Number.isInteger(parseInt(val))) {
-				let attackedShip = gameBoard.ships[parseInt(val) - 1];
+				const attackedShip = gameBoard.ships[parseInt(val) - 1];
 				attackedShip.hit();
-				console.log(
-					`hit a ship! field number: ${parseInt(val)}, attacked id: ${
-						attackedShip.id
-					}`
-				);
 				gameBoard.board[yCord - 1][xCord - 1] = '※';
 
 				if (attackedShip.isSunk()) {
-					console.log(`${attackedShip.name} was destroyed`);
 					gameBoard.markShipArea('•', attackedShip);
 					gameBoard.shipCount--;
 					gameBoard.checkGameOver();
-					if (gameBoard.isGameOver === true) console.info('Game Over');
+					if (gameBoard.isGameOver === true) console.log('GAME OVER!');
 				}
 			} else {
 				isLegalMove = false;
@@ -145,7 +124,7 @@ export const GameBoard = (playerSide) => {
 					}
 				}
 			}
-			isLegalPlace ? console.log('legal place') : console.log('Illegal place!');
+			// isLegalPlace ? console.log('legal place') : console.log('Illegal place!');
 			return isLegalPlace;
 		},
 
@@ -166,10 +145,9 @@ export const GameBoard = (playerSide) => {
 				gameBoard.markShipArea('*', ship, xCord, yCord);
 				ship.onBoard = true;
 				ship.coordinates = [parseFloat(xCord), parseFloat(yCord)];
-				console.log(
-					`${ship.name} was placed ${ship.direction} on ${ship.coordinates}`
-				);
-				console.log(ship.coordinates);
+				// console.log(
+				// 	`${ship.name} was placed ${ship.direction} on ${ship.coordinates}`
+				// );
 				gameBoard.shipCount++;
 				if (gameBoard.shipCount === 6) {
 					gameBoard.isReady = true;
@@ -246,7 +224,7 @@ export const GameBoard = (playerSide) => {
 		},
 
 		placeShipsAtRandom: () => {
-			let reversedShips = [...gameBoard.ships].reverse();
+			const reversedShips = [...gameBoard.ships].reverse();
 			while (gameBoard.shipCount < 6) {
 				reversedShips.forEach((ship) => {
 					gameBoard.randomlyPlaceShip(ship);
@@ -256,15 +234,14 @@ export const GameBoard = (playerSide) => {
 
 		randomlyPlaceShip: (ship) => {
 			if (ship.onBoard !== true) {
-				let randX = Math.ceil(Math.random() * 10);
-				let randY = Math.ceil(Math.random() * 10);
+				const randX = Math.ceil(Math.random() * 10);
+				const randY = Math.ceil(Math.random() * 10);
 				if (Math.random() * 2 > 1) gameBoard.changeShipDirection(ship);
 				gameBoard.placeShip(ship, randX, randY);
 				gameBoard.randomlyPlaceShip(ship);
 			}
 		},
 		checkGameOver: () => {
-			// console.log('Game over? ', gameBoard.shipCount === 0)
 			if (gameBoard.shipCount === 0) {
 				gameBoard.isGameOver = true;
 				return true;

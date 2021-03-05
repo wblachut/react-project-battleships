@@ -64,7 +64,6 @@
 }
 
 .dark.row-description {
-  /* position: absolute; */
   float: right;
 }
 
@@ -174,11 +173,9 @@
 }
 
 .ship-wrapper {
-  /* position: absolute; */
   width: 600px;
   height: 450px;
   float: right;
-  /* display: flex; */
   flex-wrap: wrap;
 }
 

@@ -31,7 +31,7 @@ Otherwise...
 - React Transition Group
 - React Functional Components
 
-# Tools:
+## Tools:
 
 - Visual Studio Code
 - Javascript
@@ -43,8 +43,14 @@ Otherwise...
 
 ## To does and some concepts for future:
 
+- [X] Simplify getShips function in Battleships.js (KM)
+- [X] remove `let` everywhere possible - use `const` instead (KM)
+- [ ] add .jsx extension to JSX files and add `defaultProps` (KM)
+- [X] move test files to `_test_` (KN)
+- [X] make it responsive
+- [ ] apply useContext Hook instead of drilling props, or useReducer and Redux
 - [ ] fix display of flipped ships
-- [ ] make AI smart
+- [ ] make AI smart (...in progress)
 - [ ] make intro disappearing after 20s
 
 - [ ] make choosing sides possible

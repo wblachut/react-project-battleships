@@ -14,7 +14,6 @@ const Header = () => {
 				>
 					<FontAwesomeIcon icon={['fab', 'github']} className="gh-icon" />
 				</a>
-				<i className="fab fa-github"></i>
 			</div>
 			<nav></nav>
 		</header>
