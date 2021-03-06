@@ -1,12 +1,9 @@
 @font-face {
   font-family: "Star Jedi";
   font-family: "Star Jedi Hollow";
-  font-family: "Star Jedi Rounded";
-  src: local("Star Jedi"), url("./fonts/StarJedi.ttf") format("ttf");
-  src: local("Star Jedi Hollow"),
-    url("./fonts/StarJediHollow.ttf") format("ttf");
-  src: local("Star Jedi Rounded"),
-    url("./fonts/StarJediRounded.ttf") format("ttf");
+  src: url("https://github.com/wblachut/react-project-battleships/blob/master/src/style/fonts/StarJedi.ttf") format("ttf");
+  src: 
+    url("https://github.com/wblachut/react-project-battleships/blob/master/src/style/fonts/StarJedi.ttf") format("ttf");
 }
 
 header {
