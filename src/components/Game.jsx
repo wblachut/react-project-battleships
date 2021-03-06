@@ -156,33 +156,26 @@ const Game = (props) => {
 export default Game;
 
 Game.propTypes = {
-	player: PropTypes.object,
-	board: PropTypes.array,
+	player: PropTypes.object.isRequired,
+	board: PropTypes.array.isRequired,
 	setBoard: PropTypes.func,
-	opponent: PropTypes.object,
-	opponentBoard: PropTypes.array,
+	opponent: PropTypes.object.isRequired,
+	opponentBoard: PropTypes.array.isRequired,
 	setOpponentBoard: PropTypes.func,
-	PlayerOne: PropTypes.object,
-	PlayerTwo: PropTypes.object,
+	PlayerOne: PropTypes.object.isRequired,
+	PlayerTwo: PropTypes.object.isRequired,
 	gameReady: PropTypes.bool,
 	setGameReady: PropTypes.func,
-	winner: PropTypes.object,
+	winner: PropTypes.object.isRequired,
 	setWinner: PropTypes.func,
 	setAppStatus: PropTypes.func,
 };
 
 Game.defaultProps = {
-	player: {},
-	board: {},
 	setBoard: () => {},
-	opponent: {},
-	opponentBoard: [],
 	setOpponentBoard: () => {},
-	PlayerOne: {},
-	PlayerTwo: {},
 	gameReady: false,
 	setGameReady: () => {},
-	winner: {},
 	setWinner: () => {},
 	setAppStatus: () => {},
 };

@@ -26,11 +26,9 @@ const Intro = ({ setAppStatus }) => {
 					<br></br>
 					<p className="p-center">Confront the sith lord...</p>
 					<br></br>
-					<p className="p-center">May the force be with you jedi master!</p>
+					<p className="p-center">May the force be with you jedi master.</p>
 					<br></br>
-					<p className="p-center">
-						Click on the screen to continue to the game!
-					</p>
+					<p className="p-center">Click on the screen to continue!</p>
 				</div>
 			</section>
 		</div>
@@ -40,5 +38,5 @@ const Intro = ({ setAppStatus }) => {
 export default Intro;
 
 Intro.propTypes = {
-	setAppStatus: PropTypes.func,
+	setAppStatus: PropTypes.func.isRequired,
 };

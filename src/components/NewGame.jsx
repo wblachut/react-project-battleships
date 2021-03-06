@@ -23,6 +23,6 @@ const NewGame = ({ setAppStatus, setWinner }) => {
 export default NewGame;
 
 NewGame.propTypes = {
-	setAppStatus: PropTypes.func,
-	setWinner: PropTypes.func,
+	setAppStatus: PropTypes.func.isRequired,
+	setWinner: PropTypes.func.isRequired,
 };

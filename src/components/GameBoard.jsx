@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 const GameBoard = (props) => {
 	const { player, board, isGameReady } = props;
-	// add outer side column with ships - on destroy add fire gif
-	// make ships render only in React, without vanilla JS
 	return (
 		<div className={`${player.side} game-board`}>
 			<div className={`${player.side} side-title`}>The {player.side} side</div>
@@ -35,7 +33,6 @@ const GameBoard = (props) => {
 								);
 							})}
 						</div>
-
 						{/* grid */}
 						<div className={`${player.side} grid-wrapper ${player.type}`}>
 							{player.gameBoard.board.map((arr, j) =>
@@ -217,12 +214,22 @@ export default GameBoard;
 
 GameBoard.propTypes = {
 	isGameReady: PropTypes.bool,
-	player: PropTypes.object,
-	board: PropTypes.array,
+	player: PropTypes.object.isRequired,
+	board: PropTypes.array.isRequired,
 	onMakeMove: PropTypes.func,
 	onPlaceShip: PropTypes.func,
 	onFlipShips: PropTypes.func,
 	onPlaceRandomly: PropTypes.func,
 	onResetBoard: PropTypes.func,
 	onStartGame: PropTypes.func,
+};
+
+GameBoard.defaultProps = {
+	isGameReady: false,
+	onMakeMove: () => {},
+	onPlaceShip: () => {},
+	onFlipShips: () => {},
+	onPlaceRandomly: () => {},
+	onResetBoard: () => {},
+	onStartGame: () => {},
 };

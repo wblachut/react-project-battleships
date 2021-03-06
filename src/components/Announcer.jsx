@@ -34,6 +34,6 @@ const Announcer = ({ winner, setAppStatus }) => {
 export default Announcer;
 
 Announcer.propTypes = {
-	winner: PropTypes.object,
-	setAppStatus: PropTypes.func,
+	winner: PropTypes.object.isRequired,
+	setAppStatus: PropTypes.func.isRequired,
 };
