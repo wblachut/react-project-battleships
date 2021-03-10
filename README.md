@@ -48,8 +48,8 @@ Otherwise...
 - [X] add .jsx extension to JSX files and add `defaultProps` (KM)
 - [X] move test files to `_test_` (KN)
 - [X] make it responsive
+- [X] fix display of flipped ships
 - [ ] apply useContext Hook or Redux instead of drilling props.
-- [ ] fix display of flipped ships
 - [ ] make AI smart (...in progress)
 - [ ] make intro disappearing after 20s
 
