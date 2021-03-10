@@ -16,7 +16,7 @@ On page load you can observe text flowing similarly to one from George Lukas Sta
 
 ![](/public/gifs/preps.gif)
 
-You are a good guy, **remember that**! Help the rebeliants to win!
+Click on the opponent game board to attack it. If you hit a ship you will see appearing fire. When the ship is sunk you will be able to see it. You are a good guy, **remember that**! Help rebeliants win!
 
 ![](/public/gifs/game.gif)
 
@@ -45,10 +45,10 @@ Otherwise...
 
 
 - [X] remove `let` everywhere possible - use `const` instead (KM)
-- [ ] add .jsx extension to JSX files and add `defaultProps` (KM)
+- [X] add .jsx extension to JSX files and add `defaultProps` (KM)
 - [X] move test files to `_test_` (KN)
 - [X] make it responsive
-- [ ] apply useContext Hook instead of drilling props, or useReducer and Redux
+- [ ] apply useContext Hook or Redux instead of drilling props.
 - [ ] fix display of flipped ships
 - [ ] make AI smart (...in progress)
 - [ ] make intro disappearing after 20s
