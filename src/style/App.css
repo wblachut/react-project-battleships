@@ -1,10 +1,5 @@
-@font-face {
-  font-family: "Star Jedi";
-  font-family: "Star Jedi Hollow";
-  src: url("https://github.com/wblachut/react-project-battleships/blob/master/src/style/fonts/StarJedi.ttf") format("ttf");
-  src: 
-    url("https://github.com/wblachut/react-project-battleships/blob/master/src/style/fonts/StarJedi.ttf") format("ttf");
-}
+@import url(https://allfont.net/allfont.css?fonts=star-jedi);
+@import url(https://allfont.net/allfont.css?fonts=star-jedi-hollow);
 
 header {
   color: rgb(255, 255, 255);

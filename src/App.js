@@ -1,7 +1,6 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { CreatePlayer } from './Player';
 import { CSSTransition } from 'react-transition-group';
+import { CreatePlayer } from './Player';
 
 import Header from './components/Header';
 import Intro from './components/Intro';

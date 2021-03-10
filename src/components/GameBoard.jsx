@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable no-undef */ // process.env
 import React from 'react';
 import PropTypes from 'prop-types';
 
