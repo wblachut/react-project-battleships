@@ -128,13 +128,15 @@
 
 .ship-img {
   overflow: hidden;
-  transform: scale(0.5);
+  /* transform: scale(0.5); */
+  width: 200px;
   cursor: grab;
   transition: all ease-out 0.5s;
+  overflow: hidden;
 }
 
 .ship-img.vertical {
-  transform: scale(0.5) rotate(90deg);
+  transform: rotate(0.5deg);
 }
 
 .ship-img-grid {
@@ -149,11 +151,6 @@
 }
 .ship-img-grid.vertical {
   transform: translate(0%, 52%) scale(0.33) rotate(90deg);
-}
-
-.ship-wrapper {
-  display: inline-block;
-  overflow: hidden;
 }
 
 .flame-gif {
@@ -172,11 +169,12 @@
   transform: translate(0%, 160%) scale(1) rotate(90deg);
 }
 
-.ship-wrapper {
+.ship-menage-wrapper {
   width: 600px;
   height: 450px;
-  float: right;
   flex-wrap: wrap;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .button-container {
@@ -186,7 +184,27 @@
 }
 
 .ship-view {
-  width: 160px;
+  width: 30px;
   height: 40px;
-  padding: 5px;
+  margin: 5px 5px 10px 50px;
+  /* transition: all ease-in .5s; */
+}
+
+
+.ship-view.vertical {
+  transform: rotate(90deg);
+  width: 40px;
+  margin: none;
+}
+
+.ship-wrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ship-wrapper.flipped {
+  flex-direction: row;
+  flex-wrap: wrap;
+
 }

@@ -254,7 +254,7 @@ html {
     margin-top:  -140px !important;
   }
 
-  .ship-wrapper {
+  .ship-menage-wrapper {
     transform: scale(0.9) translate(-20%, 0);
 
   }
@@ -269,6 +269,9 @@ html {
   }
 
   .announcer {
-    transform: scale(.6) translate(-50%, -50%);
+    transform: scale(.5) translate(-100%, -50%);
+    overflow: hidden;
+    width: 170%;
+    top: 30vh;
   }
 }

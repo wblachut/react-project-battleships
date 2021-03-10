@@ -158,7 +158,7 @@ const GameBoard = (props) => {
 					</div>
 				</div>
 				{!isGameReady && (
-					<div className="ship-wrapper">
+					<div className="ship-menage-wrapper">
 						<div className="button-container">
 							<button className="star-btn" onClick={props.onPlaceRandomly}>
 								Place randomly
@@ -170,29 +170,33 @@ const GameBoard = (props) => {
 								Flip Ships
 							</button>
 						</div>
-
-						{player.gameBoard.ships.map((ship) => {
-							return (
-								!ship.onBoard && (
-									<div className="ship-view" key={`ship${ship.id}`}>
-										<img
-											className={`ship-img ${ship.direction}`}
-											src={
-												process.env.PUBLIC_URL +
-												`/images/${player.side}${ship.id}.png`
-											}
-											alt={`ship-${player.side}${ship.id}`}
-											key={`ship-${player.side}${ship.id}`}
-											data-ship={ship.id}
-											draggable
-											onDragStart={(e) => {
-												e.dataTransfer.setData('ship', e.target.dataset.ship);
-											}}
-										/>
-									</div>
-								)
-							);
-						})}
+						<div className="ship-wrapper">
+							{player.gameBoard.ships.map((ship) => {
+								return (
+									!ship.onBoard && (
+										<div
+											className={`ship-view ${ship.direction}`}
+											key={`ship${ship.id}`}
+										>
+											<img
+												className={`ship-img ${ship.direction}`}
+												src={
+													process.env.PUBLIC_URL +
+													`/images/${player.side}${ship.id}.png`
+												}
+												alt={`ship-${player.side}${ship.id}`}
+												key={`ship-${player.side}${ship.id}`}
+												data-ship={ship.id}
+												draggable
+												onDragStart={(e) => {
+													e.dataTransfer.setData('ship', e.target.dataset.ship);
+												}}
+											/>
+										</div>
+									)
+								);
+							})}
+						</div>
 					</div>
 				)}
 			</div>

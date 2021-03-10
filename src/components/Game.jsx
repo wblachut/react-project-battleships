@@ -35,6 +35,7 @@ const Game = (props) => {
 			if (!ship.onBoard) player.gameBoard.changeShipDirection(ship);
 		});
 		setBoard([...player.gameBoard.board]);
+		document.querySelector('.ship-wrapper').classList.toggle('flipped');
 	};
 
 	const onResetBoard = () => {
@@ -134,19 +135,19 @@ const Game = (props) => {
 				</div>
 			) : (
 				<div className="game">
-					<CSSTransition in={!isGameReady} timeout={1000} classNames="swipe">
-						<GameBoard
-							player={player}
-							board={board}
-							isGameReady={isGameReady}
-							setGameReady={setGameReady}
-							onFlipShips={onFlipShips}
-							onPlaceShip={onPlaceShip}
-							onPlaceRandomly={onPlaceRandomly}
-							onResetBoard={onResetBoard}
-							onStartGame={onStartGame}
-						/>
-					</CSSTransition>
+					{/* <CSSTransition in={!isGameReady} timeout={1000} classNames="swipe"> */}
+					<GameBoard
+						player={player}
+						board={board}
+						isGameReady={isGameReady}
+						setGameReady={setGameReady}
+						onFlipShips={onFlipShips}
+						onPlaceShip={onPlaceShip}
+						onPlaceRandomly={onPlaceRandomly}
+						onResetBoard={onResetBoard}
+						onStartGame={onStartGame}
+					/>
+					{/* </CSSTransition> */}
 				</div>
 			)}
 		</div>
@@ -156,17 +157,17 @@ const Game = (props) => {
 export default Game;
 
 Game.propTypes = {
-	player: PropTypes.object.isRequired,
-	board: PropTypes.array.isRequired,
+	player: PropTypes.object,
+	board: PropTypes.array,
 	setBoard: PropTypes.func,
-	opponent: PropTypes.object.isRequired,
-	opponentBoard: PropTypes.array.isRequired,
+	opponent: PropTypes.object,
+	opponentBoard: PropTypes.array,
 	setOpponentBoard: PropTypes.func,
-	PlayerOne: PropTypes.object.isRequired,
+	PlayerOne: PropTypes.object,
 	PlayerTwo: PropTypes.object.isRequired,
 	gameReady: PropTypes.bool,
 	setGameReady: PropTypes.func,
-	winner: PropTypes.object.isRequired,
+	winner: PropTypes.object,
 	setWinner: PropTypes.func,
 	setAppStatus: PropTypes.func,
 };
