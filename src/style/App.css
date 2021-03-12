@@ -1,5 +1,10 @@
-@import url(https://allfont.net/allfont.css?fonts=star-jedi);
-@import url(https://allfont.net/allfont.css?fonts=star-jedi-hollow);
+@font-face {
+  font-family: 'Star Jedi';
+  src:  url('./fonts/StarJedi.ttf') format('truetype');
+  font-family: 'Star Jedi Hollow';
+  src:  url('./fonts/StarJediHollow.ttf') format('truetype'),
+}
+
 
 header {
   color: rgb(255, 255, 255);
@@ -14,8 +19,7 @@ header {
 }
 
 .title-main {
-  font-family: "Star Jedi";
-  font-family: "Star Jedi Hollow";
+  font-family: "Star Jedi Hollow", Quicksand;
   font-size: 3rem;
   text-shadow: 0px 0px 5px greenyellow;
 }
@@ -94,7 +98,7 @@ html {
   border: 2px double white;
   border-radius: 5px;
   color: white;
-  font-family: "Star Jedi";
+  font-family: "Star Jedi", Quicksand;
   transition: all 1s;
   padding: 10px;
 }
@@ -120,7 +124,7 @@ html {
 .announcer h1 {
   padding: 10px 10px 20px 10px;
   text-shadow: 0px 0px 15px lime;
-  font-family: "Star Jedi";
+  font-family: "Star Jedi", Quicksand;
 }
 
 .announcer.dark h1 {

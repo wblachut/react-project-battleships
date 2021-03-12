@@ -10,7 +10,7 @@
 .side-title {
   padding: 20px;
   text-align: center;
-  font-family: "Star Jedi";
+  font-family: "Star Jedi", Quicksand;
   font-size: 2rem;
 }
 
@@ -59,7 +59,7 @@
 .numbers,
 .letters {
   text-align: center;
-  font-family: "Star Jedi";
+  font-family: "Star Jedi", Quicksand;
   padding: 5px;
 }
 
