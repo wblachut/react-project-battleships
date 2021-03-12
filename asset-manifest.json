@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-project-battleships/static/css/main.cad7f7f6.chunk.css",
-    "main.js": "/react-project-battleships/static/js/main.4e56033b.chunk.js",
-    "main.js.map": "/react-project-battleships/static/js/main.4e56033b.chunk.js.map",
+    "main.css": "/react-project-battleships/static/css/main.f7c7e881.chunk.css",
+    "main.js": "/react-project-battleships/static/js/main.9a443315.chunk.js",
+    "main.js.map": "/react-project-battleships/static/js/main.9a443315.chunk.js.map",
     "runtime-main.js": "/react-project-battleships/static/js/runtime-main.d754cf9b.js",
     "runtime-main.js.map": "/react-project-battleships/static/js/runtime-main.d754cf9b.js.map",
     "static/js/2.ce4e5c3b.chunk.js": "/react-project-battleships/static/js/2.ce4e5c3b.chunk.js",
     "static/js/2.ce4e5c3b.chunk.js.map": "/react-project-battleships/static/js/2.ce4e5c3b.chunk.js.map",
     "index.html": "/react-project-battleships/index.html",
-    "static/css/main.cad7f7f6.chunk.css.map": "/react-project-battleships/static/css/main.cad7f7f6.chunk.css.map",
+    "static/css/main.f7c7e881.chunk.css.map": "/react-project-battleships/static/css/main.f7c7e881.chunk.css.map",
     "static/js/2.ce4e5c3b.chunk.js.LICENSE.txt": "/react-project-battleships/static/js/2.ce4e5c3b.chunk.js.LICENSE.txt",
     "static/media/App.css": "/react-project-battleships/static/media/yoda.016bcc58.gif",
     "static/media/night-sky.css": "/react-project-battleships/static/media/stars.90c266f7.png"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.d754cf9b.js",
     "static/js/2.ce4e5c3b.chunk.js",
-    "static/css/main.cad7f7f6.chunk.css",
-    "static/js/main.4e56033b.chunk.js"
+    "static/css/main.f7c7e881.chunk.css",
+    "static/js/main.9a443315.chunk.js"
   ]
 }
