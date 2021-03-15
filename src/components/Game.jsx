@@ -72,7 +72,7 @@ const Game = (props) => {
 	};
 
 	const onAIMove = () => {
-		opponent.makeAIMove(player);
+		opponent.makeAIMove(player, false);
 		setBoard([...player.gameBoard.board]);
 		// console.table(board);
 		if (player.gameBoard.isGameOver) {
@@ -134,7 +134,6 @@ const Game = (props) => {
 				</div>
 			) : (
 				<div className="game">
-					{/* <CSSTransition in={!isGameReady} timeout={1000} classNames="swipe"> */}
 					<GameBoard
 						player={player}
 						board={board}
@@ -146,7 +145,6 @@ const Game = (props) => {
 						onResetBoard={onResetBoard}
 						onStartGame={onStartGame}
 					/>
-					{/* </CSSTransition> */}
 				</div>
 			)}
 		</div>
@@ -163,7 +161,7 @@ Game.propTypes = {
 	opponentBoard: PropTypes.array,
 	setOpponentBoard: PropTypes.func,
 	PlayerOne: PropTypes.object,
-	PlayerTwo: PropTypes.object.isRequired,
+	PlayerTwo: PropTypes.object,
 	gameReady: PropTypes.bool,
 	setGameReady: PropTypes.func,
 	winner: PropTypes.object,

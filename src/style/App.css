@@ -1,10 +1,28 @@
-@font-face {
+/* @font-face {
   font-family: 'Star Jedi';
   src:  url('./fonts/StarJedi.ttf') format('truetype');
   font-family: 'Star Jedi Hollow';
   src:  url('./fonts/StarJediHollow.ttf') format('truetype'),
+} */
+@font-face {
+  font-family: 'StarJedi';
+  src: url('../style/fonts/new/StarJedi.ttf') format('woff2'),
+      url('../style/fonts/new/StarJedi.woff') format('woff'),
+      url('../style/fonts/new/StarJedi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'StarJediHollow';
+  src: url('../style/fonts/new/StarJediHollow.woff2') format('woff2'),
+      url('../style/fonts/new/StarJediHollow.woff') format('woff'),
+      url('../style/fonts/new/StarJediHollow.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 header {
   color: rgb(255, 255, 255);

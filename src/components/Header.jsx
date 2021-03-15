@@ -5,9 +5,7 @@ const Header = () => {
 	return (
 		<header className="header">
 			<div className="header-row">
-				<h1 className="col-sm-8">
-					<span className="title-main">starships </span>{' '}
-				</h1>
+				<span className="title-main">starships </span>
 				<a
 					href="https://github.com/wblachut/react-project-battleships"
 					className="gh-btn"
@@ -15,7 +13,6 @@ const Header = () => {
 					<FontAwesomeIcon icon={['fab', 'github']} className="gh-icon" />
 				</a>
 			</div>
-			<nav></nav>
 		</header>
 	);
 };

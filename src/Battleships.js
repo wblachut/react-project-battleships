@@ -1,3 +1,15 @@
+import {
+	attackShip,
+	checkDirectionalShipPlacement,
+	markShipOnBoard,
+	markShipArea,
+	handleShipCount,
+	randomlyPlaceShip,
+} from './helperFunctions';
+
+const BOARD_SIDE_SIZE = 10;
+const FLEET_QUANTITY = 6;
+
 export const Ship = (name = 'ship', size = 1, direction = 'horizontal') => {
 	const ship = {
 		name,
@@ -13,7 +25,7 @@ export const Ship = (name = 'ship', size = 1, direction = 'horizontal') => {
 	return ship;
 };
 
-export const GameBoard = (playerSide) => {
+export const GameBoard = (playerSide = 'light') => {
 	const gameBoard = {
 		side: playerSide,
 		board: [],
@@ -43,7 +55,7 @@ export const GameBoard = (playerSide) => {
 			gameBoard.isGameOver = false;
 		},
 
-		createShips: (playerSide) => {
+		createShips: (playerSide = 'light') => {
 			if (playerSide === 'dark') {
 				return [
 					Ship('TIE-fighter', 1),
@@ -71,176 +83,63 @@ export const GameBoard = (playerSide) => {
 			return shipArray;
 		},
 
-		changeShipDirection: (ship) => {
+		changeShipDirection: (ship = {}) => {
 			ship.direction === 'horizontal' && ship.size > 1
 				? (ship.direction = 'vertical')
 				: (ship.direction = 'horizontal');
 		},
+
 		receiveAttack: (xCord, yCord) => {
-			let isLegalMove = true;
+			// if ()
 			const val = gameBoard.board[yCord - 1][xCord - 1];
+			if (val === '•' || val === '※') return false;
 			if (val === '_' || val === '*') {
 				gameBoard.board[yCord - 1][xCord - 1] = '•';
 			} else if (Number.isInteger(parseInt(val))) {
-				const attackedShip = gameBoard.ships[parseInt(val) - 1];
-				attackedShip.hit();
-				gameBoard.board[yCord - 1][xCord - 1] = '※';
-
-				if (attackedShip.isSunk()) {
-					gameBoard.markShipArea('•', attackedShip);
-					gameBoard.shipCount--;
-					gameBoard.checkGameOver();
-					if (gameBoard.isGameOver === true) console.log('GAME OVER!');
-				}
-			} else {
-				isLegalMove = false;
+				attackShip(gameBoard, xCord, yCord);
 			}
-			return isLegalMove;
+			return true;
 		},
 
-		checkPlacement: (ship, xCord, yCord) => {
+		checkPlacement: (ship = {}, xCord = 0, yCord = 0) => {
+			// console.log('Placement check');
 			xCord = parseFloat(xCord);
 			yCord = parseFloat(yCord);
-			let isLegalPlace = true;
-			if (ship.direction === 'horizontal') {
-				if (ship.size + xCord - 1 > 10) {
-					isLegalPlace = false;
-					return;
-				}
-				for (let i = 0; i < ship.size; i++) {
-					if (gameBoard.board[yCord - 1][xCord - 1 + i] !== '_') {
-						isLegalPlace = false;
-						return;
-					}
-				}
-			} else if (ship.direction === 'vertical') {
-				if (ship.size + yCord - 1 > 10) {
-					isLegalPlace = false;
-					return;
-				}
-				for (let i = 0; i < ship.size; i++) {
-					if (gameBoard.board[yCord - 1 + i][xCord - 1] !== '_') {
-						isLegalPlace = false;
-					}
-				}
-			}
-			// isLegalPlace ? console.log('legal place') : console.log('Illegal place!');
-			return isLegalPlace;
+			return checkDirectionalShipPlacement(
+				gameBoard,
+				ship,
+				xCord,
+				yCord,
+				BOARD_SIDE_SIZE
+			);
 		},
 
-		placeShip: (ship, xCord, yCord) => {
+		placeShip: (ship = {}, xCord = 0, yCord = 0) => {
 			if (
-				gameBoard.shipCount < 6 &&
+				gameBoard.shipCount < FLEET_QUANTITY &&
 				gameBoard.checkPlacement(ship, xCord, yCord)
 			) {
-				if (ship.direction === 'horizontal') {
-					ship.hitState.forEach((cell, i) => {
-						gameBoard.board[yCord - 1][xCord - 1 + i] = `${ship.id}`;
-					});
-				} else if (ship.direction === 'vertical') {
-					ship.hitState.forEach((cell, i) => {
-						gameBoard.board[yCord - 1 + i][xCord - 1] = `${ship.id}`;
-					});
-				}
-				gameBoard.markShipArea('*', ship, xCord, yCord);
+				markShipOnBoard(ship, gameBoard, xCord, yCord);
+				markShipArea('*', ship, gameBoard, xCord, yCord, BOARD_SIDE_SIZE);
 				ship.onBoard = true;
 				ship.coordinates = [parseFloat(xCord), parseFloat(yCord)];
-				// console.log(
-				// 	`${ship.name} was placed ${ship.direction} on ${ship.coordinates}`
-				// );
-				gameBoard.shipCount++;
-				if (gameBoard.shipCount === 6) {
-					gameBoard.isReady = true;
-				}
+				// console.log(	`${ship.name}, ${ship.direction} --> ${ship.coordinates}`);
+				handleShipCount(gameBoard, FLEET_QUANTITY);
 				return true;
 			} else {
 				return false;
 			}
 		},
 
-		markShipArea: (
-			mark,
-			ship,
-			xCord = ship.coordinates[0],
-			yCord = ship.coordinates[1]
-		) => {
-			ship.hitState.forEach((cell, i) => {
-				if (ship.direction === 'horizontal') {
-					// horizontal areas
-					if (yCord < 10) {
-						gameBoard.board[yCord][xCord - 1 + i] = `${mark}`;
-					}
-					if (yCord > 1) {
-						gameBoard.board[yCord - 2][xCord - 1 + i] = `${mark}`;
-					}
-					// vertical areas
-					if (xCord > 1) {
-						if (yCord > 1) {
-							gameBoard.board[yCord - 2][xCord - 2] = `${mark}`;
-						}
-						gameBoard.board[yCord - 1][xCord - 2] = `${mark}`;
-						if (yCord < 10) {
-							gameBoard.board[yCord][xCord - 2] = `${mark}`;
-						}
-					}
-
-					if (xCord - 1 + ship.size < 10) {
-						if (yCord > 1) {
-							gameBoard.board[yCord - 2][xCord - 1 + ship.size] = `${mark}`;
-						}
-						gameBoard.board[yCord - 1][xCord - 1 + ship.size] = `${mark}`;
-						if (yCord < 10) {
-							gameBoard.board[yCord][xCord - 1 + ship.size] = `${mark}`;
-						}
-					}
-				} else if (ship.direction === 'vertical') {
-					if (xCord < 10) {
-						gameBoard.board[yCord - 1 + i][xCord] = `${mark}`;
-					}
-					if (xCord > 1) {
-						gameBoard.board[yCord - 1 + i][xCord - 2] = `${mark}`;
-					}
-					// horizontal areas
-					if (yCord > 1) {
-						if (xCord > 1) {
-							gameBoard.board[yCord - 2][xCord - 2] = `${mark}`;
-						}
-						gameBoard.board[yCord - 2][xCord - 1] = `${mark}`;
-						if (xCord < 10) {
-							gameBoard.board[yCord - 2][xCord] = `${mark}`;
-						}
-					}
-					if (yCord - 1 + ship.size < 10) {
-						if (xCord > 1) {
-							gameBoard.board[yCord - 1 + ship.size][xCord - 2] = `${mark}`;
-						}
-						gameBoard.board[yCord - 1 + ship.size][xCord - 1] = `${mark}`;
-						if (xCord < 10) {
-							gameBoard.board[yCord - 1 + ship.size][xCord] = `${mark}`;
-						}
-					}
-				}
-			});
-		},
-
 		placeShipsAtRandom: () => {
 			const reversedShips = [...gameBoard.ships].reverse();
-			while (gameBoard.shipCount < 6) {
+			while (gameBoard.shipCount < FLEET_QUANTITY) {
 				reversedShips.forEach((ship) => {
-					gameBoard.randomlyPlaceShip(ship);
+					randomlyPlaceShip(ship, gameBoard, BOARD_SIDE_SIZE);
 				});
 			}
 		},
 
-		randomlyPlaceShip: (ship) => {
-			if (ship.onBoard !== true) {
-				const randX = Math.ceil(Math.random() * 10);
-				const randY = Math.ceil(Math.random() * 10);
-				if (Math.random() * 2 > 1) gameBoard.changeShipDirection(ship);
-				gameBoard.placeShip(ship, randX, randY);
-				gameBoard.randomlyPlaceShip(ship);
-			}
-		},
 		checkGameOver: () => {
 			if (gameBoard.shipCount === 0) {
 				gameBoard.isGameOver = true;

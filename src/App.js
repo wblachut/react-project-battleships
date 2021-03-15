@@ -14,9 +14,8 @@ const App = () => {
 	const [winner, setWinner] = useState(null);
 	let PlayerOne = CreatePlayer('light', 'human');
 	let PlayerTwo = CreatePlayer('dark', 'computer');
-	console.clear();
-
 	let timeout = 2000;
+
 	return (
 		<div>
 			<Header />
