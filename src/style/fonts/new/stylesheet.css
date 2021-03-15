@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'StarJedi';
+    src: url('StarJedi.woff2') format('woff2'),
+        url('StarJedi.woff') format('woff'),
+        url('StarJedi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'StarJediHollow';
+    src: url('StarJediHollow.woff2') format('woff2'),
+        url('StarJediHollow.woff') format('woff'),
+        url('StarJediHollow.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
